@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SimplexRuby</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <section class="content-header">
+    <h1 style="text-align: center">
+      Simplex em Ruby
+    </h1>
+  </section>
+  <section class="content">
+    <div class="row">
+      <%= yield %>
+    </div>
+  </section>
+</body>
+</html>

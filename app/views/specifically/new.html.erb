@@ -1,0 +1,83 @@
+<div class="col-md-10 col-md-offset-1">
+  <div class="panel panel-success">
+    <div class="panel-heading">Continuando...</div>
+    <div class="panel-body">
+      <form action="/specifically/new">
+        <div class="panel panel-info">
+          <div class="panel-heading">Função Objetiva</div>
+          <div class="panel-body">
+            <div class="form-row">
+              <% for @i in 1..@number_variables %>
+              <div class="form-group col-md-4">
+                <div class="col-md-12">
+                  <label class="control-label">X<%= @i %></label>
+                </div>
+                <div class="col-md-10">
+                  <input type="text" class="form-control" id="input_x<%= @i %>">
+                </div>
+
+                <div class="col-md-2">
+                  <% if(@i < @number_variables) %>
+                      <h4>+</h4>
+                  <% end %>
+                </div>
+              </div>
+              <%end%>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-info">
+          <div class="panel-heading">Restrições.</div>
+          <div class="panel-body">
+              <% for @j in 1..@number_restriction %>
+              <div class="form-group">
+                <div class="col-md-12">
+                  <% for @i in 1..@number_variables+1 %>
+                    <div class="form-row">
+                    <% if (@i <= @number_variables) %>
+
+                        <div class="form-group col-md-5">
+                          <div class="col-md-12">
+                            <label class="control-label">X<%= @i %></label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" class="form-control" id="restriction_x<%= @i %>">
+                          </div>
+                          <% if (@i < @number_variables) %>
+                          <div class="col-md-1">
+                            <h4>+</h4>
+                          </div>
+                          <% else %>
+                            <div class="col-md-3">
+                              <select id="max_or_min" name="max_or_min" class="form-control" id="exampleFormControlSelect1">
+                                <option value="1"><=</option>
+                                <option value="2">>=</option>
+                              </select>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+                    <% end %>
+                      <% if (@i == @number_variables + 1) %>
+                      <div class="form-group col-md-2">
+                        <div class="col-md-12">
+                          <label class="control-label">Restrição</label>
+                        </div>
+                        <div class="col-md-8">
+                          <input type="text" class="form-control" id="restriction_x<%= @i %>">
+                        </div>
+                      </div>
+                      <% end %>
+                  <% end %>
+                </div>
+              </div>
+              <input type="hidden" class="form-control" value="1" id="restriction_f<%= @j %>">
+            <% end %>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Continuar</button>
+      </form>
+    </div>
+  </div>
+</div>
