@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   post "specifically/create", to: "specifically#create"
 
+  get "specifically/solution", to: "specifically#solution"
 end

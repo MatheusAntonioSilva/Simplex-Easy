@@ -1,16 +1,18 @@
-class SimplexService
-  require 'matrix'
+require 'matrix'
 
+class Vector
+  public :[]=
+end
+
+class Simplex
   DEFAULT_MAX_PIVOTS = 10_000
 
-
+  class UnboundedProblem < StandardError
+  end
 
   attr_accessor :max_pivots
 
   def initialize(c, a, b)
-
-    @unbounded_problem = UnboundedProblemService.new
-    @vector = VectorService.new
     @pivot_count = 0
     @max_pivots = DEFAULT_MAX_PIVOTS
 
@@ -20,9 +22,9 @@ class SimplexService
     @num_vars           = @num_non_slack_vars + @num_constraints
 
     # Set up initial matrix A and vectors b, c
-    @c = @vector[*c.map {|c1| -1*c1 } + [0]*@num_constraints]
+    @c = Vector[*c.map {|c1| -1*c1 } + [0]*@num_constraints]
     @a = a.map {|a1| Vector[*(a1.clone + [0]*@num_constraints)]}
-    @b = @vector[*b.clone]
+    @b = Vector[*b.clone]
 
     unless @a.all? {|a| a.size == @c.size } and @b.size == @a.length
       raise ArgumentError, "Input arrays have mismatched dimensions"
@@ -31,7 +33,7 @@ class SimplexService
     0.upto(@num_constraints - 1) {|i| @a[i][@num_non_slack_vars + i] = 1 }
 
     # set initial solution: all non-slack variables = 0
-    @x          = @vector[*([0]*@num_vars)]
+    @x          = Vector[*([0]*@num_vars)]
     @basic_vars = (@num_non_slack_vars...@num_vars).to_a
     update_solution
   end
@@ -80,7 +82,7 @@ class SimplexService
   def pivot
     pivot_column = entering_variable
     pivot_row    = pivot_row(pivot_column)
-    raise @unbounded_problem unless pivot_row
+    raise UnboundedProblem unless pivot_row
     leaving_var  = basic_variable_in_row(pivot_row)
     replace_basic_variable(leaving_var => pivot_column)
 
@@ -169,7 +171,7 @@ class SimplexService
     array.map {|c| "%2.3f" % c }
   end
 
-  # like Enumerable#min_by except if multiple values are minimum
+  # like Enumerable#min_by except if multiple values are minimum 
   # it returns the last
   def last_min_by(array)
     best_element, best_value = nil, nil
