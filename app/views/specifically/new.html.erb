@@ -2,7 +2,7 @@
   <div class="panel panel-success">
     <div class="panel-heading">Continuando...</div>
     <div class="panel-body">
-      <form action="/specifically/new">
+      <form action="/specifically/create" method="POST">
         <div class="panel panel-info">
           <div class="panel-heading">Função Objetiva</div>
           <div class="panel-body">
@@ -13,7 +13,7 @@
                   <label class="control-label">X<%= @i %></label>
                 </div>
                 <div class="col-md-10">
-                  <input type="text" class="form-control" id="input_x<%= @i %>">
+                  <input type="text" class="form-control" name="input_x<%= @i %>" id="input_x<%= @i %>">
                 </div>
 
                 <div class="col-md-2">
@@ -26,7 +26,15 @@
             </div>
           </div>
         </div>
-
+        <div class="panel panel-danger">
+          <div class="panel-heading">Limite de Interações.</div>
+          <div class="panel-body">
+              <label class="control-label col-md-1">Limite:</label>
+            <div class="col-md-2">
+              <input type="text" class="form-control" name="interaction_limit" id="interaction_limit">
+            </div>
+          </div>
+        </div>
         <div class="panel panel-info">
           <div class="panel-heading">Restrições.</div>
           <div class="panel-body">
@@ -42,7 +50,7 @@
                             <label class="control-label">X<%= @i %></label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" class="form-control" id="restriction_x<%= @i %>">
+                            <input type="text" name="restriction_x<%= @i %>_<%= @j %>" class="form-control" id="restriction_x<%= @i %>_<%= @j %>">
                           </div>
                           <% if (@i < @number_variables) %>
                           <div class="col-md-1">
@@ -52,7 +60,6 @@
                             <div class="col-md-3">
                               <select id="max_or_min" name="max_or_min" class="form-control" id="exampleFormControlSelect1">
                                 <option value="1"><=</option>
-                                <option value="2">>=</option>
                               </select>
                             </div>
                           <% end %>
@@ -65,17 +72,20 @@
                           <label class="control-label">Restrição</label>
                         </div>
                         <div class="col-md-8">
-                          <input type="text" class="form-control" id="restriction_x<%= @i %>">
+                          <input type="text" class="form-control" name="limite_x<%= @j %>" id="limite_x<%= @j %>">
                         </div>
                       </div>
                       <% end %>
                   <% end %>
                 </div>
               </div>
-              <input type="hidden" class="form-control" value="1" id="restriction_f<%= @j %>">
+              <input type="hidden" class="form-control" value="1" name="restriction_f<%= @i %>_<%= @j %>" id="restriction_f<%= @j %>">
+              <input type="hidden" class="form-control" value="<%= @number_variables %>" name="number_variables" id="number_variables">
+              <input type="hidden" class="form-control" value="<%= @number_restriction %>" name="number_restrictions" id="number_restrictions">
             <% end %>
           </div>
         </div>
+
         <button type="submit" class="btn btn-primary">Continuar</button>
       </form>
     </div>

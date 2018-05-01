@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   #specifically
   get "specifically/new", to: "specifically#new"
 
+  post "specifically/create", to: "specifically#create"
+
 end
