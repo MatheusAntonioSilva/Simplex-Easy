@@ -167,6 +167,30 @@ class Simplex
     lines.join("\n")
   end
 
+  def matriz_tableau
+    if can_improve?
+      pivot_column = entering_variable
+      pivot_row    = pivot_row(pivot_column)
+    else
+      pivot_row = nil
+    end
+    num_cols = @c.size + 1
+    c = formatted_values(@c.to_a)
+    b = formatted_values(@b.to_a)
+    a = @a.to_a.map {|ar| formatted_values(ar.to_a) }
+    if pivot_row
+      a[pivot_row][pivot_column] = "*" + a[pivot_row][pivot_column]
+    end
+    max = (c + b + a + ["1234567"]).flatten.map(&:size).max
+    result = []
+    result << c.map {|c| c.rjust(max, " ") }
+    a.zip(b) do |arow, brow|
+      result << (arow + [brow]).map {|a| a.rjust(max, " ") }
+      result.last.insert(arow.length, "|")
+    end
+    return result
+  end
+
   def formatted_values(array)
     array.map {|c| "%2.3f" % c }
   end

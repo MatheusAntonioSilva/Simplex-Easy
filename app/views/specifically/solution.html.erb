@@ -2,7 +2,32 @@
   <div class="panel panel-success">
     <div class="panel-heading">Continuando...</div>
     <div class="panel-body">
-      <h1><%= @solution.to_s %> </h1>
+      <table class="table table-striped">
+        <thead>
+
+        <tr>
+          <% for i in 0..@number_variables-1 %>
+          <th>X<%= i+1 %></th>
+        <%end%>
+        <% for i in 0..@number_restriction - 1 %>
+          <th>f<%= i + 1 %></th>
+        <% end %>
+          <th>Z</th>
+        </tr>
+
+        </thead>
+        <tbody>
+          <tr>
+            <% for i in 0..@number_variables-1 %>
+              <th><%= @solution[i] %></th>
+            <%end%>
+            <% for i in 0..@number_restriction-1 %>
+              <th><%= @variables_reserves[i] %></th>
+            <% end %>
+            <th><%= @valueZ.to_s %></th>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
