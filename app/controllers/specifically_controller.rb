@@ -2,6 +2,7 @@ class SpecificallyController < ApplicationController
 
   @solution = ''
   @simplex = ''
+
   def new
     @i = 0
     @number_restriction = params[:number_restrictions].to_i
