@@ -1,3 +1,0 @@
-class VectorService
-    public :[]=
-end
