@@ -2,7 +2,7 @@
   <div class="panel panel-success">
     <div class="panel-heading">Continuando...</div>
     <div class="panel-body">
-      <form action="/specifically/create" method="POST">
+      <form action="/specifically/create" id="formSpecifically" method="POST">
         <div class="panel panel-info">
           <div class="panel-heading">Função Objetiva</div>
           <div class="panel-body">
@@ -83,11 +83,23 @@
               <input type="hidden" class="form-control" value="<%= @number_variables %>" name="number_variables" id="number_variables">
               <input type="hidden" class="form-control" value="<%= @number_restriction %>" name="number_restrictions" id="number_restrictions">
             <% end %>
+            <input type="hidden" class="form-control"  name="option_user" id="option_user">
           </div>
         </div>
-
-        <button type="submit" class="btn btn-primary">Continuar</button>
+        <input type="button" onclick="directSolution()" class="btn btn-success" value="Solução Direta">
+        <!--<input type="button" onclick="stepInStep" class="btn btn-primary" value="Solução Passo a Passo"> !-->
       </form>
     </div>
   </div>
 </div>
+<script>
+    function directSolution() {
+        $("#option_user").val(1);
+        document.getElementById("formSpecifically").submit();
+    }
+
+    function stepInStep() {
+        $("#option_user").val(2);
+        document.getElementById("formSpecifically").submit();
+    }
+</script>

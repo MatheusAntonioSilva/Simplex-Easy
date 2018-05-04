@@ -21,10 +21,6 @@ class SpecificallyController < ApplicationController
         function_restrictions,
         function_limits        # .. and the rhs of the inequalities
     )
-    puts "==============="
-    puts @simplex.solution
-    puts "==============="
-
   end
 
   def getSimplex
@@ -32,11 +28,9 @@ class SpecificallyController < ApplicationController
   end
 
   def create
-
     function_objective = []
     @number_variables = params[:number_variables].to_i
     @number_restriction = params[:number_restrictions].to_i
-
     for i in 0..@number_variables-1
       function_objective[i] = params["input_x#{i+1}"].to_i
     end
@@ -53,23 +47,19 @@ class SpecificallyController < ApplicationController
         function_limits[j] = params["limite_x#{j+1}"].to_i
     end
 
-
     setSimplex(function_objective, function_restrictions, function_limits )
 
     @solution = getSimplex.solution
     @matriz = getSimplex.matriz_tableau
     @valueZ = 0
 
-    for i in 1..@matriz.length-1
-      @valueZ = @valueZ + @matriz[i].last.to_f
+    for i in 0..@solution.length
+      @valueZ = @valueZ + @solution[i].to_f * function_objective[i].to_f
     end
     @variables_reserves = []
     for i in @number_variables..@matriz[0].length-1
       @variables_reserves[i-@number_variables] = @matriz[0][i].to_f
     end
-    puts "xxxxxxxxxxxxxxxxxxxxxxx"
-    puts @variables_reserves
-    puts "xxxxxxxxxxxxxxxxxxxxxxx"
     @valueZ
     @variables_reserves
     render :solution
