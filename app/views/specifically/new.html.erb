@@ -13,7 +13,7 @@
                   <label class="control-label">X<%= @i %></label>
                 </div>
                 <div class="col-md-10">
-                  <input type="text" class="form-control" name="input_x<%= @i %>" id="input_x<%= @i %>">
+                  <input type="number" class="form-control" name="input_x<%= @i %>" id="input_x<%= @i %>" required>
                 </div>
 
                 <div class="col-md-2">
@@ -31,7 +31,7 @@
           <div class="panel-body">
               <label class="control-label col-md-1">Limite:</label>
             <div class="col-md-2">
-              <input type="text" class="form-control" name="interaction_limit" id="interaction_limit">
+              <input type="number" class="form-control" name="interaction_limit" id="interaction_limit" required>
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@
                             <label class="control-label">X<%= @i %></label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" name="restriction_x<%= @i %>_<%= @j %>" class="form-control" id="restriction_x<%= @i %>_<%= @j %>">
+                            <input type="number" name="restriction_x<%= @i %>_<%= @j %>" class="form-control" id="restriction_x<%= @i %>_<%= @j %>" required>
                           </div>
                           <% if (@i < @number_variables) %>
                           <div class="col-md-1">
@@ -72,7 +72,7 @@
                           <label class="control-label">Restrição</label>
                         </div>
                         <div class="col-md-8">
-                          <input type="text" class="form-control" name="limite_x<%= @j %>" id="limite_x<%= @j %>">
+                          <input type="number" class="form-control" name="limite_x<%= @j %>" id="limite_x<%= @j %>" required>
                         </div>
                       </div>
                       <% end %>
@@ -86,8 +86,8 @@
             <input type="hidden" class="form-control"  name="option_user" id="option_user">
           </div>
         </div>
-        <input type="button" onclick="directSolution()" class="btn btn-success" value="Solução Direta">
-        <!--<input type="button" onclick="stepInStep" class="btn btn-primary" value="Solução Passo a Passo"> !-->
+        <input type="submit" onclick="directSolution()" class="btn btn-success" value="Solução Direta">
+        <input type="submit" onclick="stepInStep()" class="btn btn-primary" value="Solução Passo a Passo">
       </form>
     </div>
   </div>
@@ -95,11 +95,9 @@
 <script>
     function directSolution() {
         $("#option_user").val(1);
-        document.getElementById("formSpecifically").submit();
     }
 
     function stepInStep() {
         $("#option_user").val(2);
-        document.getElementById("formSpecifically").submit();
     }
 </script>
