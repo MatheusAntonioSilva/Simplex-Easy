@@ -2,7 +2,7 @@
 
 
 
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-4 col-md-offset-4">
     <div class="panel panel-success">
       <div class="panel-heading">Especifique seu problema</div>
       <div class="panel-body">
@@ -10,25 +10,13 @@
           <div class="form-group">
             <label for="exampleInputEmail1">Quantas variáveis ​​de decisão o problema tem?</label>
             <div class="form-group">
-              <select id="number_variables" name="number_variables" class="form-control" id="exampleFormControlSelect1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
+              <input type="number" id="number_variables" min="0" name="number_variables" class="form-control" id="exampleFormControlSelect1">
             </div>
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Quantas restrições?</label>
             <div class="form-group">
-              <select id="number_restrictions" name="number_restrictions" class="form-control" id="exampleFormControlSelect1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
+              <input type="number" id="number_restrictions" min="0" name="number_restrictions" class="form-control" id="exampleFormControlSelect1">
             </div>
           </div>
           <div class="form-group">

@@ -19,12 +19,12 @@
         <tbody>
           <tr>
             <% for i in 0..@number_variables-1 %>
-              <th><%= @solution[i] %></th>
+              <th><%= @solution_end[i] %></th>
             <%end%>
             <% for i in 0..@number_restriction-1 %>
-              <th><%= @variables_reserves[i] %></th>
+              <th><%= @variables_reserves_end[i] %></th>
             <% end %>
-            <th><%= @valueZ.to_s %></th>
+            <th><%= @valueZ_end.to_s %></th>
           </tr>
         </tbody>
       </table>
