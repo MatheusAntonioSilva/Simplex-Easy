@@ -94,15 +94,23 @@ class SpecificallyController < ApplicationController
     function_restrictions = []
     function_reserveds = []
     function_limits = []
-    for j in 0..@number_variables-1
-      function_restrictions[j] = []
-      for i in 0..@number_restriction-1
-        function_restrictions[j][i] = params["restriction_x#{i+1}_#{j+1}"].to_i
+    puts "============"
+
+    for i in 0..@number_restriction-1
+      function_restrictions[i] = []
+      for j in 0..@number_variables-1
+        function_restrictions[i][j] = params["restriction_x#{j+1}_#{i+1}"].to_i
       end
-        function_reserveds[j] = params["restriction_f#{i+1}_#{j+1}"].to_i
-        function_limits[j] = params["limite_x#{j+1}"].to_i
+      function_reserveds[i] = params["restriction_f#{i+1}_#{i+1}"].to_i
+      function_limits[i] = params["limite_x#{i+1}"].to_i
     end
 
+    puts "============"
+    puts function_objective.to_s
+    puts function_restrictions.to_s
+    puts function_limits.to_s
+    puts "oi cheguei"
+    puts "============"
     #se o usuario escolheu passo a passo vai ir para o metodo step se não fara solucao direta e chamara a  view de solution
     setSimplex(function_objective, function_restrictions, function_limits )
 
@@ -112,6 +120,7 @@ class SpecificallyController < ApplicationController
     @solution = []
     @valueZ = []
     @variables_reserves = []
+
 
     while getSimplex.can_improve? == true
       @matrix[cont] = getSimplex.matriz_tableau
