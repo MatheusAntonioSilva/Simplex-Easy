@@ -2,32 +2,51 @@
   <div class="panel panel-success">
     <div class="panel-heading">Solução Final...</div>
     <div class="panel-body">
-      <table class="table table-striped">
-        <thead>
-
-        <tr>
-          <% for i in 0..@number_variables-1 %>
-          <th>X<%= i+1 %></th>
-        <%end%>
-        <% for i in 0..@number_restriction - 1 %>
-          <th>f<%= i + 1 %></th>
-        <% end %>
-          <th>Z</th>
-        </tr>
-
-        </thead>
-        <tbody>
-          <tr>
-            <% for i in 0..@number_variables-1 %>
-              <th><%= @solution_end[i] %></th>
-            <%end%>
-            <% for i in 0..@number_restriction-1 %>
-              <th><%= @variables_reserves_end[i] %></th>
-            <% end %>
-            <th><%= @valueZ_end.to_s %></th>
-          </tr>
-        </tbody>
-      </table>
+      <div class="row">
+        <h5 style="text-align: center">Relatorio Final</h5>
+      </div>
+        <div class="col-md-12">
+          <table class="table table-striped">
+            <thead>
+              <th>Variaveis</th>
+              <th>Final</th>
+              <th>PS</th>
+              <th>+</th>
+              <th>-</th>
+              <th>Uso</th>
+            </thead>
+            <tbody>
+              <% for i in 0..@number_variables-1 %>
+                <tr>
+                  <th>x<%=i+1%></th>
+                  <th><%= @solution_end[i] %></th>
+                  <th></th>
+                  <th>+</th>
+                  <th>-</th>
+                  <th></th>
+                </tr>
+              <%end%>
+              <% for i in 0..@number_restriction-1 %>
+                <tr>
+                  <th>f<%=i+1%></th>
+                  <th><%= @variables_reserves_end[i] %></th>
+                  <th><%= @variables_reserves_end[i] %></th>
+                  <th>+</th>
+                  <th>-</th>
+                  <th><%= @function_limits[i] - @variables_reserves_end[i] %></th>
+                </tr>
+              <%end%>
+              <tr>
+                <th>Z</th>
+                <th><%= @valueZ_end %></th>
+                <th></th>
+                <th>+</th>
+                <th>-</th>
+                <th></th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
     </div>
   </div>
 </div>

@@ -78,41 +78,34 @@ class SpecificallyController < ApplicationController
     redirect_to specifically_impracticable_error_path
   end
   def create
-    function_objective = []
+    @function_objective = []
     @number_variables = params[:number_variables].to_i
     @number_restriction = params[:number_restrictions].to_i
     if(params[:max_or_min] ==  '1')
       for i in 0..@number_variables-1
-        function_objective[i] = params["input_x#{i+1}"].to_i
+        @function_objective[i] = params["input_x#{i+1}"].to_i
       end
     else
       for i in 0..@number_variables-1
-        function_objective[i] = params["input_x#{i+1}"].to_i * (-1)
+        @function_objective[i] = params["input_x#{i+1}"].to_i * (-1)
       end
     end
 
-    function_restrictions = []
-    function_reserveds = []
-    function_limits = []
+    @function_restrictions = []
+    @function_reserveds = []
+    @function_limits = []
     puts "============"
 
     for i in 0..@number_restriction-1
-      function_restrictions[i] = []
+      @function_restrictions[i] = []
       for j in 0..@number_variables-1
-        function_restrictions[i][j] = params["restriction_x#{j+1}_#{i+1}"].to_i
+        @function_restrictions[i][j] = params["restriction_x#{j+1}_#{i+1}"].to_i
       end
-      function_reserveds[i] = params["restriction_f#{i+1}_#{i+1}"].to_i
-      function_limits[i] = params["limite_x#{i+1}"].to_i
+      @function_reserveds[i] = params["restriction_f#{i+1}_#{i+1}"].to_i
+      @function_limits[i] = params["limite_x#{i+1}"].to_i
     end
-
-    puts "============"
-    puts function_objective.to_s
-    puts function_restrictions.to_s
-    puts function_limits.to_s
-    puts "oi cheguei"
-    puts "============"
     #se o usuario escolheu passo a passo vai ir para o metodo step se não fara solucao direta e chamara a  view de solution
-    setSimplex(function_objective, function_restrictions, function_limits )
+    setSimplex(@function_objective, @function_restrictions, @function_limits )
 
     res = ''
     cont = 0
@@ -128,7 +121,7 @@ class SpecificallyController < ApplicationController
       @solution[cont] = getSimplex.pivot
 
       for i in 0..@number_variables
-        @valueZ[cont] = @valueZ[cont].to_f + @matrix[cont][0][i].to_f * function_objective[i].to_f
+        @valueZ[cont] = @valueZ[cont].to_f + @matrix[cont][0][i].to_f * @function_objective[i].to_f
       end
       # for i in number_variables..@matrix[cont][0].length-1
       #   @variables_reserves[cont] = [i-number_variables]
@@ -144,11 +137,8 @@ class SpecificallyController < ApplicationController
     @matriz_end = getSimplex.matriz_tableau
     @valueZ_end = 0
     @variables_reserves_end = []
-    puts "================="
-    puts getSimplex.solution
-    puts "=================="
       for i in 0..@solution_end.length
-        @valueZ_end = @valueZ_end + @solution_end[i].to_f * function_objective[i].to_f
+        @valueZ_end = @valueZ_end + @solution_end[i].to_f * @function_objective[i].to_f
       end
 
       for i in @number_variables..@matriz_end[0].length-1

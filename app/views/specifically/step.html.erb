@@ -5,109 +5,124 @@
       <div class="col-md-12">
         <div class="row">
           <h5 style="text-align: center"> Solução Final</h5>
-        </div>        <table class="table table-striped">
+        </div>
+        <table class="table table-striped">
           <thead>
-
-          <tr>
-            <% for i in 0..@number_variables - 1 %>
-              <th>X<%= i + 1 %></th>
-            <% end %>
-            <% for i in 0..@number_restriction - 1 %>
-              <th>f<%= i + 1 %></th>
-            <% end %>
-            <th>Z</th>
-          </tr>
-
+          <th>Variaveis</th>
+          <th>Final</th>
+          <th>PS</th>
+          <th>+</th>
+          <th>-</th>
+          <th>Uso</th>
           </thead>
           <tbody>
-          <tr>
-            <% for i in 0..@number_variables - 1 %>
+          <% for i in 0..@number_variables-1 %>
+            <tr>
+              <th>x<%=i+1%></th>
               <th><%= @solution_end[i] %></th>
-            <% end %>
-            <% for i in 0..@number_restriction - 1 %>
+              <th></th>
+              <th>+</th>
+              <th>-</th>
+              <th></th>
+            </tr>
+          <%end%>
+          <% for i in 0..@number_restriction-1 %>
+            <tr>
+              <th>f<%=i+1%></th>
               <th><%= @variables_reserves_end[i] %></th>
-            <% end %>
-            <th><%= @valueZ_end.to_s %></th>
+              <th><%= @variables_reserves_end[i] %></th>
+              <th>+</th>
+              <th>-</th>
+              <th><%= @function_limits[i] - @variables_reserves_end[i] %></th>
+            </tr>
+          <%end%>
+          <tr>
+            <th>Z</th>
+            <th><%= @valueZ_end %></th>
+            <th></th>
+            <th>+</th>
+            <th>-</th>
+            <th></th>
           </tr>
           </tbody>
         </table>
-          <table class="table">
-            <tr>
-              <% for i in 0..@number_variables - 1 %>
-                <th>
-                  X<%= i + 1 %>
-                </th>
-              <% end %>
-
-              <% for i in 0..@number_restriction - 1 %>
-                <th>
-                  F<%= i + 1 %>
-                </th>
-              <% end %>
+        <table class="table">
+          <tr>
+            <% for i in 0..@number_variables - 1 %>
               <th>
-                B
+                X<%= i + 1 %>
               </th>
-            </tr>
-            <% @matriz_end[1..-1].each_with_index do |line, inx| %>
-              <tr>
-                <% line.each do |x| %>
-                  <% if x != "|" %>
-                    <td>
-                      <%= x %>
-                    </td>
-                  <% end %>
-                <% end %>
-              </tr>
             <% end %>
+
+            <% for i in 0..@number_restriction - 1 %>
+              <th>
+                F<%= i + 1 %>
+              </th>
+            <% end %>
+            <th>
+              B
+            </th>
+          </tr>
+          <% @matriz_end[1..-1].each_with_index do |line, inx| %>
             <tr>
-              <% @matriz_end[0].each_with_index do |z, key| %>
-                <td><%= z %></td>
-              <% end %>
-              <td><%= @valueZ_end %></td>
-            </tr>
-          </table>
-          <div class="row">
-            <h5 style="text-align: center"> Solução Passo a Passo</h5>
-          </div>
-          <% @matrix.each_with_index do |linha, key_matrix| %>
-          <div class="col-md-6">
-            <table class="table">
-                <tr>
-                  <% for i in 0..@number_variables - 1 %>
-                    <th>
-                      X<%= i+1 %>
-                    </th>
-                  <%end%>
-
-                  <% for i in 0..@number_restriction - 1 %>
-                    <th>
-                      F<%= i + 1 %>
-                    </th>
-                  <% end %>
-
-                  <th>
-                    B
-                  </th>
-                </tr>
-                <% linha[1..-1].each_with_index do |line, inx| %>
-
-                  <tr>
-                    <% line.each do |x| %>
-                      <% if x != "|" %>
-                        <td>
-                          <%= x %>
-                        </td>
-                      <% end %>
-                    <% end %>
-                  </tr>
+              <% line.each do |x| %>
+                <% if x != "|" %>
+                  <td>
+                    <%= x %>
+                  </td>
                 <% end %>
-                  <tr>
-                    <% linha[0].each_with_index do |z, key| %>
-                      <td><%= z %></td>
+              <% end %>
+            </tr>
+          <% end %>
+          <tr>
+            <% @matriz_end[0].each_with_index do |z, key| %>
+              <td><%= z %></td>
+            <% end %>
+            <td><%= @valueZ_end %></td>
+          </tr>
+        </table>
+        <div class="row">
+          <h5 style="text-align: center"> Solução Passo a Passo</h5>
+        </div>
+        <% @matrix.each_with_index do |linha, key_matrix| %>
+        <div class="col-md-6">
+          <table class="table">
+              <tr>
+                <% for i in 0..@number_variables - 1 %>
+                  <th>
+                    X<%= i+1 %>
+                  </th>
+                <%end%>
+
+                <% for i in 0..@number_restriction - 1 %>
+                  <th>
+                    F<%= i + 1 %>
+                  </th>
+                <% end %>
+
+                <th>
+                  B
+                </th>
+              </tr>
+              <% linha[1..-1].each_with_index do |line, inx| %>
+
+                <tr>
+                  <% line.each do |x| %>
+                    <% if x != "|" %>
+                      <td>
+                        <%= x %>
+                      </td>
                     <% end %>
-                    <td><%= @valueZ[key_matrix] %></td>
-                  </tr>
-              </table>
+                  <% end %>
+                </tr>
+              <% end %>
+                <tr>
+                  <% linha[0].each_with_index do |z, key| %>
+                    <td><%= z %></td>
+                  <% end %>
+                  <td><%= @valueZ[key_matrix] %></td>
+                </tr>
+            </table>
           </div>
         <% end %>
       </div>
