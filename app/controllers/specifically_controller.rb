@@ -8,6 +8,8 @@ class SpecificallyController < ApplicationController
     @number_restriction = params[:number_restrictions].to_i
     @number_variables = params[:number_variables].to_i
     @max_or_min = params[:max_or_min]
+    @interaction_limit = params[:interaction_limit]
+
   end
 
   def setSolution(solution)
@@ -145,7 +147,46 @@ class SpecificallyController < ApplicationController
         @variables_reserves_end[i-@number_variables] = @matriz_end[0][i].to_f
       end
 
-      if (@error_solution)
+      @max_min_limit = []
+      for i in 0..@number_restriction-1
+        @max_min_limit[i] = []
+        for j in 0..@number_restriction-1
+          if @matriz_end[j+1][@number_variables+i].to_f != 0
+            @max_min_limit[i][j] = @matriz_end[i+1][@matriz_end[j+1].length-1].to_f / @matriz_end[j+1][@number_variables+i].to_f
+          else
+            @max_min_limit[i][j] = 0
+          end
+        end
+        @max_min_limit[i] =  @max_min_limit[i].sort { |a, z| z <=> a }
+
+      end
+
+    @max_min = []
+    higher = 1111111111111111111111
+    lower = -1111111111111111111111
+    for i in 0..@max_min_limit.length-1
+      @max_min[i] = []
+      for j in  0..@max_min_limit[i].length-1
+        if @max_min_limit[i][j].to_f > 0 and @max_min_limit[i][j].to_f <= higher and @max_min_limit[i][j] != nil
+          @max_min[i].push(@max_min_limit[i][j].to_f)
+          higher = @max_min_limit[i][j].to_f
+        end
+        if @max_min_limit[i][j].to_f < 0 and @max_min_limit[i][j].to_f >= lower and @max_min_limit[i][j] != nil
+          @max_min[i].push(@max_min_limit[i][j].to_f)
+          lower = @max_min_limit[i][j].to_f
+        end
+      end
+      higher = 1111111111111111111111
+      lower = -1111111111111111111111
+    end
+
+
+    puts "max e min"
+    puts @max_min.to_s
+    puts "max e min7"
+
+
+    if (@error_solution)
         render :test
         else if(params[:option_user].to_i == 2)
           render :step

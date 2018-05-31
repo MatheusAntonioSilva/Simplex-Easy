@@ -11,8 +11,8 @@
           <th>Variaveis</th>
           <th>Final</th>
           <th>PS</th>
-          <th>+</th>
-          <th>-</th>
+          <th class="text-center">+</th>
+          <th class="text-center">-</th>
           <th>Uso</th>
           </thead>
           <tbody>
@@ -21,8 +21,8 @@
               <th>x<%=i+1%></th>
               <th><%= @solution_end[i] %></th>
               <th></th>
-              <th>+</th>
-              <th>-</th>
+              <th></th>
+              <th></th>
               <th></th>
             </tr>
           <%end%>
@@ -31,8 +31,32 @@
               <th>f<%=i+1%></th>
               <th><%= @variables_reserves_end[i] %></th>
               <th><%= @variables_reserves_end[i] %></th>
-              <th>+</th>
-              <th>-</th>
+              <%if @max_min[i].length == 0 %>
+                <th class="text-center">0</th>
+                <th class="text-center">0</th>
+              <%else%>
+                <% for j in 0..@max_min[i].length-1 %>
+                  <%if @max_min[i].length < 2 %>
+                    <% if @max_min[i][0].to_f >= 0 %>
+                      <th class="text-center"><%=@max_min[i][0].to_f%></th>
+                    <%else%>
+                      <th class="text-center">0</th>
+                    <%end%>
+                    <% if @max_min[i][0].to_f <= 0 %>
+                      <th class="text-center"><%=@max_min[i][0].to_f *(-1) %></th>
+                    <%else%>
+                      <th class="text-center">0</th>
+                    <%end%>
+                  <%else%>
+                    <% if @max_min[i][j].to_f >= 0 %>
+                      <th class="text-center"><%=@max_min[i][j].to_f%></th>
+                    <%end%>
+                    <% if @max_min[i][j].to_f <= 0 %>
+                      <th class="text-center"><%=@max_min[i][j].to_f * (-1) %></th>
+                    <%end%>
+                  <%end%>
+                <%end%>
+              <%end%>
               <th><%= @function_limits[i] - @variables_reserves_end[i] %></th>
             </tr>
           <%end%>
@@ -40,12 +64,15 @@
             <th>Z</th>
             <th><%= @valueZ_end %></th>
             <th></th>
-            <th>+</th>
-            <th>-</th>
+            <th></th>
+            <th></th>
             <th></th>
           </tr>
           </tbody>
         </table>
+        <div class="row">
+          <h5 style="text-align: center"> Ultimo Passo</h5>
+        </div>
         <table class="table">
           <tr>
             <% for i in 0..@number_variables - 1 %>
@@ -74,7 +101,7 @@
               <% end %>
             </tr>
           <% end %>
-          <tr>
+          <tr style="background-color: #f5c6cb;">
             <% @matriz_end[0].each_with_index do |z, key| %>
               <td><%= z %></td>
             <% end %>
@@ -86,6 +113,9 @@
         </div>
         <% @matrix.each_with_index do |linha, key_matrix| %>
         <div class="col-md-6">
+          <div class="row">
+            <h5 style="text-align: center"> Passo <%=key_matrix%>°</h5>
+          </div>
           <table class="table">
               <tr>
                 <% for i in 0..@number_variables - 1 %>
@@ -116,11 +146,15 @@
                   <% end %>
                 </tr>
               <% end %>
-                <tr>
+                <tr style="background-color: #f5c6cb;">
                   <% linha[0].each_with_index do |z, key| %>
                     <td><%= z %></td>
                   <% end %>
+                  <% if key_matrix == 0 %>
+                    <td>0</td>
+                  <% else %>
                   <td><%= @valueZ[key_matrix] %></td>
+                  <% end %>
                 </tr>
             </table>
           </div>

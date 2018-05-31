@@ -11,8 +11,8 @@
               <th>Variaveis</th>
               <th>Final</th>
               <th>PS</th>
-              <th>+</th>
-              <th>-</th>
+              <th class="text-center">+</th>
+              <th class="text-center">-</th>
               <th>Uso</th>
             </thead>
             <tbody>
@@ -21,8 +21,7 @@
                   <th>x<%=i+1%></th>
                   <th><%= @solution_end[i] %></th>
                   <th></th>
-                  <th>+</th>
-                  <th>-</th>
+                  <th></th>
                   <th></th>
                 </tr>
               <%end%>
@@ -31,8 +30,32 @@
                   <th>f<%=i+1%></th>
                   <th><%= @variables_reserves_end[i] %></th>
                   <th><%= @variables_reserves_end[i] %></th>
-                  <th>+</th>
-                  <th>-</th>
+                  <%if @max_min[i].length == 0 %>
+                    <th class="text-center">0</th>
+                    <th class="text-center">0</th>
+                  <%else%>
+                    <% for j in 0..@max_min[i].length-1 %>
+                      <%if @max_min[i].length < 2 %>
+                        <% if @max_min[i][0].to_f >= 0 %>
+                          <th class="text-center"><%=@max_min[i][0].to_f%></th>
+                        <%else%>
+                          <th class="text-center">0</th>
+                        <%end%>
+                        <% if @max_min[i][0].to_f <= 0 %>
+                          <th class="text-center"><%=@max_min[i][0].to_f *(-1) %></th>
+                        <%else%>
+                          <th class="text-center">0</th>
+                        <%end%>
+                      <%else%>
+                        <% if @max_min[i][j].to_f >= 0 %>
+                          <th class="text-center"><%=@max_min[i][j].to_f%></th>
+                        <%end%>
+                        <% if @max_min[i][j].to_f <= 0 %>
+                          <th class="text-center"><%=@max_min[i][j].to_f * (-1) %></th>
+                        <%end%>
+                        <%end%>
+                      <%end%>
+                    <%end%>
                   <th><%= @function_limits[i] - @variables_reserves_end[i] %></th>
                 </tr>
               <%end%>
@@ -40,8 +63,8 @@
                 <th>Z</th>
                 <th><%= @valueZ_end %></th>
                 <th></th>
-                <th>+</th>
-                <th>-</th>
+                <th></th>
+                <th></th>
                 <th></th>
               </tr>
             </tbody>
