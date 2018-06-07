@@ -31,9 +31,9 @@ Este trabalho é uma ferramenta de implementação do simplex utilizando Bootstr
 |--------- | ------|
 |19/04/2018 | Inicio do projeto.  |
 |19/04/2018 | Análise de tecnologias. |
-|19/04/2018 | Inicio do projeto |
-|19/04/2018 | Inicio do projeto |
-|19/04/2018 | Inicio do projeto |
+|20/04/2018 - 23/04/2018| Analise do Design. |
+|23/04/2018 - 24/04/2018 | Criação do Design projetado. |
+|25/04/2018 - 28/04/2018 | Criação da entrada de dados.|
 
 
 | Data  | Evento    |
