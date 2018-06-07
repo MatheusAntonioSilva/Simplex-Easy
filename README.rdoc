@@ -25,6 +25,15 @@ Este trabalho é uma ferramenta de implementação do simplex utilizando Bootstr
 
 * As restrições só aceitam "<=" como operador.
 
+== Datas Importantes
+
+|Datas | Eventos |
+|--------- | ------|
+|19/04/2018| Inicio do projeto.|
+|19/04/2018| Análise de tecnologias.|
+|19/04/2018| Inicio do projeto|
+|19/04/2018| Inicio do projeto|
+|19/04/2018| Inicio do projeto|
 
 Things you may want to cover:
 
