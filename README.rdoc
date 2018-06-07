@@ -1,7 +1,21 @@
-== README
+== Simplex-Easy
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Repositório para a implementação do algoritmo Simplex-Easy
+
+Gabriel Matheus R.A.:563676
+Jefferson Pontalti  R.A.: 560596.
+Matheus Antonio R.A.: 556971.
+Vitor Santos R.A.: 557501.
+
+Projeto de Pesquisa Operacional 5º semestre BSI Univem.
+
+5º Semestre de Bacharelado em Sistemas de Informação. 
+
+Este trabalho é uma ferramenta de implementação do simplex utilizando Bootstrap para o front-end do projeto e Rails para o back-end, na qual a função é solucionar problemas de lógica linear que envolvam maximização e minimização, otimizando o tempo da forma mais rápida possível
+
+== Ferramentas
+
+
 
 Things you may want to cover:
 
