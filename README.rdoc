@@ -43,6 +43,18 @@ Este trabalho é uma ferramenta de implementação do simplex utilizando Bootstr
 | 17/05/2018    | Solução PL Maximizar & Exibição de Resultado Final.   |
 | 24/05/2018    | Exibição Resultado Tabela Passo a Passo & Solução PL Minimizar.  |
 | 07/06/2018	  | Controle de Interações & Analise de Sensibilidade & Readme no GitHub    |
+
+
+== teste tabela
+| Tecnologias   | Descrição |
+|:-------------:|-----------|
+| Front-end | HTML, CSS, Javascript |
+| Back-end  | Ruby  |
+| Frameworks    | Rails e Bootstrap     |
+| Design Pattern    | MVC   |
+| Servidor  | Heroku    |
+
+
 Things you may want to cover:
 
 * Ruby version
