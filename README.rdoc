@@ -26,24 +26,14 @@ Este trabalho é uma ferramenta de implementação do simplex utilizando Bootstr
 * As restrições só aceitam "<=" como operador.
 
 == Datas Importantes
-
-|Datas | Eventos |
-|:-------: | ------|
-|19/04/2018 | Inicio do projeto.  |
-|19/04/2018 | Análise de tecnologias. |
-|20/04/2018 - 23/04/2018| Analise do Design. |
-|23/04/2018 - 24/04/2018 | Criação do Design projetado. |
-|25/04/2018 - 28/04/2018 | Criação da entrada de dados.|
-
-//Ricardo
-| Data  | Evento    |
-|:-----:|-----------|
-| 26/04/2018    | Início do projeto e demonstração da proposta.   |
-| 10/05/2018    | Entrada de Dados Dinâmica & Layout do SimplexSOS.   |
-| 17/05/2018    | Solução PL Maximizar & Exibição de Resultado Final.   |
-| 24/05/2018    | Exibição Resultado Tabela Passo a Passo & Solução PL Minimizar.  |
-| 07/06/2018	  | Controle de Interações & Analise de Sensibilidade & Readme no GitHub    |
-
+| Datas | Eventos |
+| :--------: | --------|
+| 19/04/2018 | Inicio do projeto.  |
+| 19/04/2018 | Análise de tecnologias. |
+| 20/04/2018 - 23/04/2018| Analise do Design. |
+| 23/04/2018 - 24/04/2018 | Criação do Design projetado. |
+| 25/04/2018 - 28/04/2018 | Criação da entrada de dados.|
+| 28/04/2018 - 03/04/2018 | Solução passo a passo. |
 
 == teste tabela
 | Tecnologias   | Descrição |
