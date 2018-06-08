@@ -26,9 +26,10 @@ Este trabalho é uma ferramenta de implementação do simplex utilizando Bootstr
 * As restrições só aceitam "<=" como operador.
 
 == Datas Importantes
-| Datas | Eventos |
-| :--------: | --------|
-| 19/04/2018 | Inicio do projeto.  |
+
+Datas | Eventos
+--------| -------- 
+19/04/2018 | Inicio do projeto.
 | 19/04/2018 | Análise de tecnologias. |
 | 20/04/2018 - 23/04/2018| Analise do Design. |
 | 23/04/2018 - 24/04/2018 | Criação do Design projetado. |
