@@ -33,7 +33,13 @@ Este trabalho é uma ferramenta de implementação do simplex utilizando Bootstr
 | 20/04/2018 - 23/04/2018| Analise do Design. |
 | 23/04/2018 - 24/04/2018 | Criação do Design projetado. |
 | 25/04/2018 - 28/04/2018 | Criação da entrada de dados.|
-| 28/04/2018 - 03/04/2018 | Solução passo a passo. |
+| 28/04/2018 - 03/05/2018 | Solução passo a passo e direta. |
+| 04/05/2018 - 11/05/2018 | Solução Otima |
+| 11/05/2018 - 17/05/2018 | Solução dos valores finais. |
+| 18/05/2018 - 24/05/2018 | Relatório de análise de sensibilidade |
+| 24/05/2018 - 31/05/2018 | Criação do limite de interações |
+
+
 
 == teste tabela
 | Tecnologias   | Descrição |
