@@ -85,27 +85,29 @@ class SpecificallyController < ApplicationController
     @number_restriction = params[:number_restrictions].to_i
     if(params[:max_or_min] ==  '1')
       for i in 0..@number_variables-1
-        @function_objective[i] = params["input_x#{i+1}"].to_i
+        @function_objective[i] = params["input_x#{i+1}"].to_f
       end
     else
       for i in 0..@number_variables-1
-        @function_objective[i] = params["input_x#{i+1}"].to_i * (-1)
+        @function_objective[i] = params["input_x#{i+1}"].to_f * (-1)
       end
     end
 
     @function_restrictions = []
     @function_reserveds = []
     @function_limits = []
-    puts "============"
 
     for i in 0..@number_restriction-1
       @function_restrictions[i] = []
       for j in 0..@number_variables-1
-        @function_restrictions[i][j] = params["restriction_x#{j+1}_#{i+1}"].to_i
+        @function_restrictions[i][j] = params["restriction_x#{j+1}_#{i+1}"].to_f
       end
-      @function_reserveds[i] = params["restriction_f#{i+1}_#{i+1}"].to_i
-      @function_limits[i] = params["limite_x#{i+1}"].to_i
+      @function_reserveds[i] = params["restriction_f#{i+1}_#{i+1}"].to_f
+      @function_limits[i] = params["limite_x#{i+1}"].to_f
     end
+
+
+
     #se o usuario escolheu passo a passo vai ir para o metodo step se não fara solucao direta e chamara a  view de solution
     setSimplex(@function_objective, @function_restrictions, @function_limits )
 
@@ -135,9 +137,11 @@ class SpecificallyController < ApplicationController
       end
     end
 
+
     @solution_end = getSimplex.solution
     @matriz_end = getSimplex.matriz_tableau
     @valueZ_end = 0
+
     @variables_reserves_end = []
       for i in 0..@solution_end.length
         @valueZ_end = @valueZ_end + @solution_end[i].to_f * @function_objective[i].to_f
@@ -161,14 +165,20 @@ class SpecificallyController < ApplicationController
 
       end
 
+    puts "max e min limit"
+    puts @max_min_limit.to_s
+    puts "max e min limit"
+
     @max_min = []
-    higher = 1111111111111111111111
+    higher = 0
     lower = -1111111111111111111111
     for i in 0..@max_min_limit.length-1
       @max_min[i] = []
       for j in  0..@max_min_limit[i].length-1
-        if @max_min_limit[i][j].to_f > 0 and @max_min_limit[i][j].to_f <= higher and @max_min_limit[i][j] != nil
+
+        if @max_min_limit[i][j].to_f > 0 and @max_min_limit[i][j].to_f >= higher and @max_min_limit[i][j] != nil
           @max_min[i].push(@max_min_limit[i][j].to_f)
+          puts @max_min_limit[i][j].to_f
           higher = @max_min_limit[i][j].to_f
         end
         if @max_min_limit[i][j].to_f < 0 and @max_min_limit[i][j].to_f >= lower and @max_min_limit[i][j] != nil

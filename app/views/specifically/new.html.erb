@@ -13,7 +13,7 @@
                   <label class="control-label">X<%= @i %></label>
                 </div>
                 <div class="col-md-10">
-                  <input type="number" class="form-control" name="input_x<%= @i %>" id="input_x<%= @i %>" required>
+                  <input type="number" step="0.01" class="form-control" name="input_x<%= @i %>" id="input_x<%= @i %>" required>
                 </div>
 
                 <div class="col-md-2">
@@ -41,7 +41,7 @@
                             <label class="control-label">X<%= @i %></label>
                           </div>
                           <div class="col-md-8">
-                            <input type="number" name="restriction_x<%= @i %>_<%= @j %>" class="form-control" id="restriction_x<%= @i %>_<%= @j %>" required>
+                            <input type="number" step="0.01" name="restriction_x<%= @i %>_<%= @j %>" class="form-control" id="restriction_x<%= @i %>_<%= @j %>" required>
                           </div>
                           <% if (@i < @number_variables) %>
                           <div class="col-md-1">
@@ -63,7 +63,7 @@
                           <label class="control-label">Restrição</label>
                         </div>
                         <div class="col-md-8">
-                          <input type="number" class="form-control" name="limite_x<%= @j %>" id="limite_x<%= @j %>" required>
+                          <input type="number" step="0.01" class="form-control" name="limite_x<%= @j %>" id="limite_x<%= @j %>" required>
                         </div>
                       </div>
                       <% end %>

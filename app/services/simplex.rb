@@ -82,6 +82,9 @@ class Simplex
   def pivot
     pivot_column = entering_variable
     pivot_row    = pivot_row(pivot_column)
+    puts "===================="
+    puts pivot_column
+    puts "===================="
     raise UnboundedProblem unless pivot_row
     leaving_var  = basic_variable_in_row(pivot_row)
     replace_basic_variable(leaving_var => pivot_column)
