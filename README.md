@@ -55,7 +55,7 @@ Este trabalho é uma ferramenta de implementação do simplex utilizando Bootstr
 
 | Requisitos    | Ferramentas   |
 |---------------|---------------|
-| Navegadores   | Google Chrome, Mozilla Firefox, Safari, Microsoft Edge    |
+| Navegadores   | Google Chrome, Mozilla Firefox    |
 | Sistemas Operacionais     | Ubuntu, Windows.    |
 
 ## Atividades realizadas no período
