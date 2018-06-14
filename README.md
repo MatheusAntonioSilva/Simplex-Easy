@@ -69,4 +69,35 @@ Código | Título | Tarefa | Situação | Observação
 5 | Demonstrar passo a passo | Demonstrar ao usuário as alterações na tabela causada pelas iterações do método simplex. | Concluído|
 6  | Tabela de sensibilidade | Demonstrar ao usuário a tabela de sensibilidade. |Concluído|
 
+## Maximização
 
+Primeiramente deve-se definir quantas variáveis de decisão tem o problema, quantas restrições ele possui e o limite de interações, após isso selecionar a forma “Max” de maximizar e clicar no botão continuar.
+
+Vamos utilizar como exemplo 2 variáveis de decisões e 3 restrições.
+
+A expressão será 11 X1 + 12 X2
+
+#### As restrições
+
+1 X1 + 4 X2<= 10000
+5 X1 + 2 X2<= 30000
+X1, X2 >=0
+
+#### Clicar no botão “Solução Direta” para obter o resultado.
+Z= 74444.44444444444
+
+## Minimização
+
+Primeiramente deve-se definir quantas variáveis de decisão tem o problema, quantas restrições ele possui e o limite de interações, após isso selecionar a forma “Min” de minimização e clicar no botão continuar.
+
+Vamos utilizar como exemplo 2 variáveis de decisões e 3 restrições.
+
+A expressão será 2 X1 + 3 X2
+
+#### As restrições
+1 X1 + 1 X2<= 4
+1 X1 + 1 X2<= 6
+X1, X2 >=0
+
+#### Clicar no botão “Solução Direta” para obter o resultado.
+Z= 12
